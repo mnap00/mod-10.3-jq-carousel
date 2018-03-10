@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+}
+
+.container {
+  border: 50px solid #888;
+  border-radius: 5px;
+  margin: 50px auto;
+  max-height: 300px;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.container::after {
+  clear: both;
+  content: ' ';
+  display: block;
+}
+
+ul {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 2000px;
+}
+
+li {
+  display: block;
+  float: left;
+  list-style-type: none;
+}
+/*# sourceMappingURL=style.css.map */
