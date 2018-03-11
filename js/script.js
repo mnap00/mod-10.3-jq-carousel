@@ -11,6 +11,11 @@ $(function() {
         changeNextSlide();
     });
 
+    $('ol li').on('click', function(event) {
+        $('.active').removeClass('active');
+        $(this).addClass('active');
+    });
+
     setInterval(changeNextSlide, 3000);
 
     function changeNextSlide() {
