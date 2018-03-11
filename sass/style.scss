@@ -1,10 +1,60 @@
+$controls-size: 30px;
+
 $grey: #888;
+$white: #fff;
 
 @mixin clearfix {
     &::after {
         clear: both;
         content: ' ';
         display: block;
+    }
+}
+
+@mixin vcenter {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+@mixin hcenter {
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+}
+
+@mixin bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+%arrow {
+    color: $white;
+    cursor: pointer;
+    font-size: $controls-size;
+    height: $controls-size * 4;
+    line-height: $controls-size * 4;
+    width: $controls-size;
+    &:hover {
+        background-color: rgba($white, 0.4);
+    }
+}
+
+%indicator {
+    border: 1px solid $white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+%list-reset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: block;
+        float: left;
+        list-style-type: none;
     }
 }
 
@@ -20,17 +70,43 @@ body {
     max-height: 300px;
     max-width: 400px;
     overflow: hidden;
+    position: relative;
 }
 
-ul {
-    border: 0;
-    margin: 0;
-    padding: 0;
+.indicators {
+    @extend %list-reset;
+    @include bottom;
+    @include hcenter;
+    text-align: center;
+
+    li {
+        @extend %indicator;
+        height: $controls-size / 2;
+        margin: 2% $controls-size / 4;
+        width: $controls-size / 2;
+    }
+}
+
+.active {
+    background-color: $white;
+}
+
+
+.images {
+    @extend %list-reset;
     width: 2000px;
 }
 
-li {
-    display: block;
-    float: left;
-    list-style-type: none;
+.prev {
+    @extend %arrow;
+    @include vcenter;
+    border-radius: 0 5px 5px 0;
+    left: 0;
+}
+
+.next {
+    @extend %arrow;
+    @include vcenter;
+    border-radius: 5px 0 0 5px;
+    right: 0;
 }
