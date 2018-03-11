@@ -1,7 +1,6 @@
 $(function() {
 
     var carouselList = $("#js-carousel ul");
-    var indicatorList = $("#js-carousel ol");
 
     setInterval(changeSlide, 3000);
 
