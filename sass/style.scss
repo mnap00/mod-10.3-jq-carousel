@@ -94,6 +94,7 @@ body {
 
 .images {
     @extend %list-reset;
+    margin-left: -400px;
     width: 2000px;
 }
 
