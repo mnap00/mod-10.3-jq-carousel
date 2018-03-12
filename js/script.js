@@ -1,7 +1,10 @@
 $(function() {
 
+    var carouselWindow = $('#js-carousel');
     var carouselList = $('#js-carousel ul');
     var indicatorList = $('#js-carousel ol');
+    var runCarousel = setInterval(changeNextSlide, 3000);
+    var activeSlide = $('#js-carousel ul li:nth-of-type(2)').addClass('active');
 
     $('#js-prev').on('click', function(event) {
         changePrevSlide();
@@ -16,7 +19,13 @@ $(function() {
         $(this).addClass('active');
     });
 
-    setInterval(changeNextSlide, 3000);
+    carouselWindow.on('mouseover', function() {
+        clearInterval(runCarousel);
+    });
+
+    carouselWindow.on('mouseout', function() {
+        runCarousel = setInterval(changeNextSlide, 3000);
+    });
 
     function changeNextSlide() {
         carouselList.animate({'marginLeft':-800}, 500, moveFirstSlide);
