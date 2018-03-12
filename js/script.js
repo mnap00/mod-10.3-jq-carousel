@@ -4,7 +4,8 @@ $(function() {
     var carouselList = $('#js-carousel ul');
     var indicatorList = $('#js-carousel ol');
     var runCarousel = setInterval(changeNextSlide, 3000);
-    var activeSlide = $('#js-carousel ul li:nth-of-type(2)').addClass('active');
+    var activeSlide = carouselList.find('li:nth-of-type(2)').addClass('active');
+    console.log($('ul li.active').attr('id'));
 
     $('#js-prev').on('click', function(event) {
         changePrevSlide();
@@ -40,6 +41,9 @@ $(function() {
         var lastItem = carouselList.find('li:last');
         lastItem.after(firstItem);
         carouselList.css({marginLeft:-400});
+        carouselList.find('li.active').removeClass('active');
+        carouselList.find('li:nth-of-type(2)').addClass('active');
+        console.log($('ul li.active').attr('id'));
     }
 
     function moveLastSlide() {
@@ -47,5 +51,7 @@ $(function() {
         var lastItem = carouselList.find('li:last');
         firstItem.before(lastItem);
         carouselList.css({marginLeft:-400});
+        carouselList.find('li.active').removeClass('active');
+        carouselList.find('li:nth-of-type(2)').addClass('active');
     }
 });
