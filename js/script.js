@@ -3,9 +3,8 @@ $(function() {
     var carouselWindow = $('#js-carousel');
     var carouselList = $('#js-carousel ul');
     var indicatorList = $('#js-carousel ol');
-    var runCarousel = setInterval(changeNextSlide, 3000);
-    var activeSlide = carouselList.find('li:nth-of-type(2)').addClass('active');
-    console.log($('ul li.active').attr('id'));
+    var timeOut = 3000;
+    var runCarousel = setInterval(changeNextSlide, timeOut);
 
     $('#js-prev').on('click', function(event) {
         changePrevSlide();
@@ -16,7 +15,7 @@ $(function() {
     });
 
     $('ol li').on('click', function(event) {
-        $('.active').removeClass('active');
+        $('ol li.active').removeClass('active');
         $(this).addClass('active');
     });
 
@@ -25,7 +24,7 @@ $(function() {
     });
 
     carouselWindow.on('mouseout', function() {
-        runCarousel = setInterval(changeNextSlide, 3000);
+        runCarousel = setInterval(changeNextSlide, timeOut);
     });
 
     function changeNextSlide() {
@@ -41,9 +40,8 @@ $(function() {
         var lastItem = carouselList.find('li:last');
         lastItem.after(firstItem);
         carouselList.css({marginLeft:-400});
-        carouselList.find('li.active').removeClass('active');
-        carouselList.find('li:nth-of-type(2)').addClass('active');
-        console.log($('ul li.active').attr('id'));
+        clearActiveClass();
+        setActiveSlide();
     }
 
     function moveLastSlide() {
@@ -51,7 +49,27 @@ $(function() {
         var lastItem = carouselList.find('li:last');
         firstItem.before(lastItem);
         carouselList.css({marginLeft:-400});
-        carouselList.find('li.active').removeClass('active');
-        carouselList.find('li:nth-of-type(2)').addClass('active');
+        clearActiveClass();
+        setActiveSlide();
     }
+
+    function clearActiveClass() {
+        var activeClass = carouselWindow.find('.active');
+        activeClass.removeClass('active');
+    }
+
+    function setActiveSlide() {
+        var activeSlide = carouselList.find('li:nth-of-type(2)');
+        var currentIndex = activeSlide.data('slide');
+        activeSlide.addClass('active');
+        setActiveIndex(currentIndex);
+    }
+
+    function setActiveIndex(index) {
+        var activeIndex = indicatorList.find('li').eq(index - 1);
+        activeIndex.addClass('active');
+    }
+
+    setActiveSlide();
+
 });
