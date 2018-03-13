@@ -66,10 +66,11 @@ $(function() {
     }
 
     function setActiveIndex(index) {
-        var activeIndex = indicatorList.find('li').eq(index - 1);
+        var activeIndex = indicatorList.find('li').eq(index);
         activeIndex.addClass('active');
     }
 
+    moveLastSlide();
     setActiveSlide();
 
 });
