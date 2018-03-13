@@ -15,8 +15,22 @@ $(function() {
     });
 
     $('ol li').on('click', function(event) {
-        $('ol li.active').removeClass('active');
-        $(this).addClass('active');
+        var clickedIndex = $(this).data('index');
+        var currentIndex = indicatorList.find('li.active').data('index');
+        var switchIndexBy = clickedIndex - currentIndex;
+        var switchSlideBy = Math.abs(switchIndexBy);
+
+        if (switchIndexBy < 0) {
+            for (var i = 0; i < switchSlideBy; i++) {
+                var j = 500 / switchSlideBy;
+                changePrevSlide(j);
+            }
+        } else if (switchIndexBy > 0) {
+            for (var i = 0; i < switchSlideBy; i++) {
+                var j = 500 / switchSlideBy;
+                changeNextSlide(j);
+            }
+        }
     });
 
     carouselWindow.on('mouseover', function() {
@@ -27,12 +41,12 @@ $(function() {
         runCarousel = setInterval(changeNextSlide, timeOut);
     });
 
-    function changeNextSlide() {
-        carouselList.animate({'marginLeft':-800}, 500, moveFirstSlide);
+    function changeNextSlide(speed = 500) {
+        carouselList.animate({'marginLeft':-800}, speed, moveFirstSlide);
     }
 
-    function changePrevSlide() {
-        carouselList.animate({'marginLeft':0}, 500, moveLastSlide);
+    function changePrevSlide(speed = 500) {
+        carouselList.animate({'marginLeft':0}, speed, moveLastSlide);
     }
 
     function moveFirstSlide() {
