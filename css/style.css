@@ -1,3 +1,35 @@
+.prev, .next {
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px;
+  height: 120px;
+  line-height: 120px;
+  text-align: center;
+  width: 30px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.indicators li {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.indicators, .images {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.indicators li, .images li {
+  display: block;
+  float: left;
+  list-style-type: none;
+}
+
 body {
   margin: 0;
 }
@@ -9,6 +41,7 @@ body {
   max-height: 300px;
   max-width: 400px;
   overflow: hidden;
+  position: relative;
 }
 
 .container::after {
@@ -17,16 +50,43 @@ body {
   display: block;
 }
 
-ul {
-  border: 0;
-  margin: 0;
-  padding: 0;
+.indicators {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  text-align: center;
+}
+
+.indicators li {
+  height: 15px;
+  margin: 2% 7.5px;
+  width: 15px;
+}
+
+.active {
+  background-color: #fff;
+}
+
+.images {
+  margin-left: -400px;
   width: 2000px;
 }
 
-li {
-  display: block;
-  float: left;
-  list-style-type: none;
+.prev {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 0 5px 5px 0;
+  left: 0;
+}
+
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 5px 0 0 5px;
+  right: 0;
 }
 /*# sourceMappingURL=style.css.map */
