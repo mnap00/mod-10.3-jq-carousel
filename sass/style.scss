@@ -34,6 +34,7 @@ $white: #fff;
     font-size: $controls-size;
     height: $controls-size * 4;
     line-height: $controls-size * 4;
+    text-align: center;
     width: $controls-size;
     &:hover {
         background-color: rgba($white, 0.4);
